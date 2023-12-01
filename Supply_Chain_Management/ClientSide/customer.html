@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Customer</title>
+    <link rel="stylesheet" href="stylesCustomerView.css">
+</head>
+<body>
+    <div class="welcome-container">
+        <h2 id="welcomemsg">Welcome Customer</h2>
+        <form action="#" method="post" id="customerForm">
+            <!-- Your form content can go here -->
+
+            <!-- Button to view orders -->
+            <button type="button" onclick="viewOrders()">View Orders</button>
+
+            <!-- Button to view orders shipping status -->
+            <button type="button" onclick="viewOrdersShippingStatus()">View Orders Shipping Status</button>
+
+            <button type="button" onclick="redirectToCustomerOrder()">Place Order</button>
+
+            <button type="button" onclick="redirectToLoginUI()">Go back</button>
+        </form>
+    </div>
+    <script src="customer.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesCustomerPlaceOrder.css">
+    <title>Place Order</title>
+</head>
+<body>
+
+<div class="order-form">
+    <h2>Place Order</h2>
+    
+    <form>
+        <label for="product">Product:</label>
+        <select id="product" name="product">
+            <!-- Add more options as needed -->
+        </select>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" placeholder="Enter quantity" required>
+
+        <button type="submit" onclick="placeOrder()">Place Order</button>
+        <br>
+        <button type="submit" onclick="redirectToCustomerUI()">Go back</button>
+    </form>
+</div>
+<script src="customerPlaceOrder.js"></script>
+</body>
+</html>

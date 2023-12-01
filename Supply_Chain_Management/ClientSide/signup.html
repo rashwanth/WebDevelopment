@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="stylesSignUp.css">
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form action="#" method="post" id="signupForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" autocomplete="off" required>
+
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="customer">Customer</option>
+                <option value="manufacturer">Manufacturer</option>
+                <option value="supplier">Supplier</option>
+                <option value="shipper">Shipper</option>
+            </select>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <button onclick="signup()">Sign Up</button>
+            <br>
+            <button onclick="goback()">Go back</button>
+        </form>
+    </div>
+    <script src="signup.js"></script>
+</body>
+</html>
