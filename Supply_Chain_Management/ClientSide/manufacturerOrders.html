@@ -6,17 +6,15 @@
   <title>Manufacturer Orders</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <style rel="stylesheet" href="stylesCustomerOrdersView.css"></style>
+  <link rel="stylesheet" href="stylesManufacturerOrdersView.css">
 </head>
 <body>
 
-  <div class="container">
-    <h2>Orders for you</h2>
-    <button type="submit" onclick="redirectToCustomerUI()">Go back</button>
-    <br>
-
-    <table id="ordersTable" class="table table-striped">
-      <thead>
+  <div class="container mt-4">
+    <h2>Orders for You</h2>
+    <button class="btn btn-primary mb-3" onclick="redirectToCustomerUI()">Go Back</button>
+    <table class="table table-striped">
+      <thead class="thead-light">
         <tr>
           <th>Manufacturer Username</th>
           <th>Item</th>

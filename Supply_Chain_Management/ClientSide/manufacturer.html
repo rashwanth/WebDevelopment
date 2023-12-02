@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Manufacturer</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="stylesCustomerView.css">
 </head>
 <body>
-    <div class="welcome-container">
+    <div class="container welcome-container">
         <h2 id="welcomemsg">Welcome Manufacturer</h2>
-        <form action="#" method="post" id="customerForm">
+        <form action="#" method="post" id="manufacturerForm">
 
             <!-- Button to view orders -->
-            <button type="button" onclick="viewOrders()">View Orders</button>
-            <button type="button" onclick="redirectToLoginUI()">Go back</button>
+            <button class="btn btn-success mb-2" type="button" onclick="viewOrders()">View Orders</button>
+
+            <button class="btn btn-secondary" type="button" onclick="redirectToLoginUI()">Go back</button>
         </form>
     </div>
     <script src="manufacturer.js"></script>
+
+    <!-- Include Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
