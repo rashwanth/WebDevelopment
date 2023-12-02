@@ -205,7 +205,14 @@ app.get("/getCustomerItems",async (req,res)=>{
 })
 app.post("/placeOrder",async(req,res)=>{
     console.log(req.body["product"]+" "+req.body["qty"])
-    await runInsertQuery(req.body,`MERGE INTO customerDemand target
+    var reqBody = req.body
+    const username = reqBody["username"],product=reqBody["product"],qty=reqBody["qty"],manufacturer = reqBody["manufacturer"]
+    const bindsForCustomerUpdateOrInsert = {
+            username,
+            product,
+            qty
+          };
+    await runInsertUpdateQuery(req.body,`MERGE INTO customerDemand target
     USING (
         SELECT :username AS username, :product AS product, :qty AS qty FROM dual
     ) source
@@ -213,10 +220,25 @@ app.post("/placeOrder",async(req,res)=>{
     WHEN MATCHED THEN
         UPDATE SET target.qty = target.qty+source.qty
     WHEN NOT MATCHED THEN
-        INSERT (customer, item, qty) VALUES (source.username, source.product, source.qty)`)
+        INSERT (customer, item, qty) VALUES (source.username, source.product, source.qty)`,bindsForCustomerUpdateOrInsert)
+    const bindsForManufUpdateOrInsert = {
+      manufacturer,
+      product,
+      qty
+    };
+    await runInsertUpdateQuery(req.body,`MERGE INTO manufOrders target
+    USING (
+        SELECT :manufacturer AS manufacturer, :product AS product, :qty AS qty FROM dual
+    ) source
+    ON (target.item= source.product and target.manuf= source.manufacturer)
+    WHEN MATCHED THEN
+        UPDATE SET target.qty = target.qty+source.qty
+    WHEN NOT MATCHED THEN
+        INSERT (item, manuf, qty) VALUES (source.product, source.manufacturer, source.qty)`,bindsForManufUpdateOrInsert)
+    // await runInsertUpdateQuery(req.body,`update manufOrders set qty=qty+ :qty where item= :product and manuf= :manufacturer commit`)
     res.status(200).send('OK');
 })
-async function runInsertQuery(reqBody,sqlQuery){
+async function runInsertUpdateQuery(reqBody,sqlQuery,binds){
     console.log(reqBody)
     var resJson = {}
     try {
@@ -225,12 +247,6 @@ async function runInsertQuery(reqBody,sqlQuery){
         connectionEstablished = true;
         // 0 - customer 1 - manufacturer 2 - supplier 3 - shipper
         const sql = sqlQuery
-        const username = reqBody["username"],product=reqBody["product"],qty=reqBody["qty"]
-        const binds = {
-            username,
-            product,
-            qty,
-          };
         const result = await connection.execute(sql, binds, { autoCommit: true });
 
         console.log(result)
@@ -282,3 +298,8 @@ async function runQueryAndReturn(sqlQuery){
       }
 }
 
+app.get("/getManufacturers",async (req,res)=>{
+  var manufacturers = await runQueryAndReturn(`select entity from busentities where etype=1`)  
+  // console.log(store)
+  res.send(JSON.stringify({"manufacturers":manufacturers}))
+})

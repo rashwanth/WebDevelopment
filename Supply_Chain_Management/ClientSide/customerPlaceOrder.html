@@ -13,9 +13,12 @@
     
     <form>
         <label for="product">Product:</label>
-        <select id="product" name="product">
-            <!-- Add more options as needed -->
+        <select id="product" name="product" onchange="productSelected()">
         </select>
+        <label for="manufacturer">Manufacturer:</label>
+        <select id="manufacturer" name="manufacturer">
+        </select>
+        <!-- Add more options as needed -->
 
         <label for="quantity">Quantity:</label>
         <input type="number" id="quantity" name="quantity" min="1" placeholder="Enter quantity" required>
